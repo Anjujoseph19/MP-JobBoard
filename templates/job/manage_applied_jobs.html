@@ -1,0 +1,59 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}              
+                <div class="applied__job__info radius-16">
+                    <h5>Manage Jobs</h5>
+                    <div class="applied__job__list">
+                        <!--single job-->
+                        <table class="table table-striped">
+                            <thead>
+                              <tr class="table-dark">
+                                <th scope="col">Job Title</th>
+                                <th scope="col">Date Applied</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for job in  jobs %}
+                              <tr>
+                                <td>
+                                    <div><img src="{{job.job.company.cmp_image.url}}" alt="Company Image" width="50" height="60"></div>
+                                    <h6>{{job.job.title}}</h6>
+                                    <ul class="job-info">
+                                        <li><span><i class="fa-light rt-briefcase"></i></span> {{job.job.company.primary_industry}}</li>
+                                        <li><span><i class="fa-light fa-location-dot"></i></span> {{job.job.company.city}}, {{job.job.company.country}}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span>{{job.date_time_applied|date}}</span><br>
+                                </td>
+                                <td class="status">
+                                    {% if job.status == 'Pending' %}
+                                    <span class="text-warning">Pending</span>
+                                    {% elif job.status == 'Accepted' %}
+                                    <span class="text-success">Accepted</span>
+                                    {% elif job.status == 'Declined' %}
+                                    <span class="text-danger">Declined</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <!-- Call to action buttons -->
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="{% url 'job-details' job.job.pk %}" class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="View Job Info"><i class="fa fa-eye"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{% url 'delete-application' job.pk %}" class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete Job application"><i class="fa fa-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        <!--single job ends-->
+                    </div>
+                </div>
+{% endblock content %}

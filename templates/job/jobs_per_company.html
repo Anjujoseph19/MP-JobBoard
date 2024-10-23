@@ -1,0 +1,62 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}              
+                <div class="applied__job__info radius-16">
+                    <h5>Manage Jobs</h5>
+                    <div class="applied__job__list">
+                        <!--single job-->
+                        <table class="table table-striped">
+                            <thead>
+                              <tr class="table-dark">
+                                <th scope="col"> Job Title</th>
+                                <th scope="col">Application</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for job in  jobs %}
+                              <tr>
+                                <td>
+                                    <h6>{{job.title}}</h6>
+                                    <span><i class="fa-light fa-location-dot"></i> {{job.city}}, {{job.country}}</span>
+                                </td>
+                                <td class="applied"><a href="{% url "applicants-per-job" job.pk %}">{{job.jobapplication_set.all.count}} Applied</a></td>
+                                <td>
+                                    <span>{{job.date_posted|date}}</span><br>
+                                    <span>{{job.expiry_date|date}}</span>
+                                </td>
+                                <td>
+                                    {% if job.status == 'Pending' %}
+                                    <span class="text-warning">Pending</span>
+                                    {% elif job.status == 'Active' %}
+                                    <span class="text-success">Active</span>
+                                    {% elif job.status == 'Expired' %}
+                                    <span class="text-danger">Expired</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <!-- Call to action buttons -->
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="{% url 'job-details' job.pk %}" class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="View Job Info"><i class="fa fa-eye"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{% url 'update-job' job.pk %}" class="btn btn-success btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Update Job Info"><i class="fa fa-edit"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{% url 'delete-job' job.pk %}" class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete Job nfo"><i class="fa fa-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        <!--single job ends-->
+                    </div>
+                </div>
+{% endblock content %}

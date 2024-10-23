@@ -1,0 +1,514 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block home %}
+
+        <!-- banner area -->
+         <section class="rts__banner position-relative home__five__banner"> 
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="rts__banner__shape d-none d-lg-block">
+                        <div class="shape__one"></div>
+                        <div class="shape__two"></div>
+                        <img src="{% static "assets/img/home-5/banner/dot__shape.svg" %}" class="shape__three" alt="">
+                    </div>
+                    <div class="rts__banner__wrapper pt-150 d-flex gap-xl-4 justify-content-between align-items-center">
+                        <div class="rts__banner__content">
+                            <h1 class="rts__banner__title text-white  wow animated fadeInUp mb-60">
+                                Your Dream Job Is Wating For You
+                            </h1>
+                            <p class="rts__banner__desc mb-5 d-xl-none d-lg-block max-700  wow animated fadeInLeft">Looking for a new job can be both exciting and daunting. Navigating the job market involves exploring various avenues, including online job boards.</p>
+                            <div class="rts__job__search form-2 z-1 position-relative max-content  wow animated fadeInUp">
+                                <form action="#" method="GET" class="d-flex align-items-center flex-wrap flex-md-nowrap flex-xl-nowrap gap-4 justify-content-between">
+                                    <div class="input-group flex-md-nowrap d-flex gap-4">
+                                        <div class="single__input d-flex flex-column">
+                                            <!--label> Enter Type of job</label-->
+                                            {% render_field filter.form.title type="text" placeholder="Job keyword"%}
+                                            <div class="search__icon fa-light fa-magnifying-glass"></div>
+                                        </div>
+                                    </div>
+                                    <!--div class="input-group flex-md-nowrap d-flex gap-4">
+                                        <div class="single__input d-flex flex-column">
+                                            <div class="nice-select" tabindex="0">
+                                                <span class="current">Select Location</span>
+                                                <ul class="list">
+                                                    <li data-value="1" class="option selected focus">Select Location</li>
+                                                    <li data-value="2" class="option">Dhaka</li>
+                                                    <li data-value="3" class="option">Barisal</li>
+                                                    <li data-value="4" class="option">Chittagong</li>
+                                                </ul>
+                                            </div>
+                                            <div class="fa-sharp fa-thin fa-location-dot location__icon"></div>
+                                        </div>
+                                    </div-->
+                                    <button type="submit" class="rts__btn fill__btn job__search " aria-label="Search">Search Job</button>
+                                </form>
+                            </div>
+                            <div class="applicant position-absolute">
+                                <div class="applicant__list  wow animated fadeInUp">
+                                    <div class="single__list">
+                                        <img src="{% static "assets/img/author/1.svg" %}" alt="">
+                                    </div>
+                                    <div class="single__list">
+                                        <img src="{% static "assets/img/author/2.svg" %}" alt="">
+                                    </div>
+                                    <div class="single__list">
+                                        <img src="{% static "assets/img/author/1.svg" %}" alt="">
+                                    </div>
+                                    <div class="single__list">
+                                        <img src="{% static "" %}" alt="">
+                                    </div>
+                                    <div class="single__list">
+                                        <img src="{% static "assets/img/author/4.svgt" %}" alt="">
+                                        <div class="icon-plus"><i class="fa-sharp fa-solid fa-plus"></i></div>
+                                    </div>
+                                </div>
+                                <span class="text-white mt-3 d-block">10k+ Candidates</span>
+                            </div>
+                        </div>
+                        <div class="position-relative">
+                            <p class="rts__banner__desc mb-3 d-none d-xl-block">Looking for a new job can be both exciting and daunting. Navigating the job market involves exploring various avenues, including online job boards.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-lg-between justify-content-center">
+                        <div></div>
+                        <div class="rts__banner__image position-relative d-flex align-items-end max-content end-0 ">
+                            <figure>
+                                <img src="{% static "assets/img/home-5/banner/banner__image.webp" %}" alt="">
+                            </figure>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+         </section>
+        <!-- banner area end -->
+        <!-- job category-->
+        <div class="pt-150"></div>
+        <div class="rts__section section__padding overflow-hidden">
+            <!--div class="container">
+                <div class="row justify-content-center mb-50 position-relative ">
+                    <div class="col-xl-6 col-lg-10">
+                        <div class="rts__section__content text-center  wow animated fadeInUp">
+                            <h3 class="rts__section__title section__mb">Browse Job Category</h3>
+                            <p class="rts__section__desc">Looking for your next career opportunity. Look no further</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-30">
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/1.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label">Accounting</a>
+                                <span>130+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/2.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label">Design & Art</a>
+                                <span>70+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/3.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label">Accounting</a>
+                                <span>70+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/4.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label">Marketing</a>
+                                <span>70+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/5.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label"> Health  & Care</a>
+                                <span>70+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/1.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label"> Engineering</a>
+                                <span>70+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/5.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label"> UI/UX Design</a>
+                                <span>70+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-xxl-3 col-md-6">
+                        <div class="single__cat style__five d-flex gap-4">
+                            <div class="single__cat__icon color-3">
+                                <img class="rounded-2" src="{% static "assets/img/home-5/cat/8.jpg" %}" alt="">
+                            </div>
+                            <div class="single__cat__link d-flex flex-column">
+                                <a href="job-list-5.html" aria-label="cat__label"> Data Science</a>
+                                <span>70+ Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div-->
+        </div>
+        <!--top employer end -->
+<!-- featured job area -->
+<section class="rts__section section__padding featured__job featured__bg">
+<div class="container">
+<div class="row justify-content-between g-4 mb-60">
+<div class="col-xl-6 col-lg-10">
+<div class="rts__section__content text-start  wow animated fadeInUp">
+<h3 class="rts__section__title section__mb">Featured Jobs</h3>
+<p class="rts__section__desc">From entry-level positions to executive roles browse through.</p>
+</div>
+</div>
+<div class="d-flex align-items-end max-content">
+<a href="{% url "available-jobs" %}" class="view__all text-white d-flex gap-2 align-items-center">View All Job <i class="fa-regular fa-arrow-right"></i></a>
+</div>
+</div>
+<div class="row px-3 d-flex flex-column g-30"> 
+<!-- single job item -->
+{% for job in filter.qs %}
+<div class="rts__job__card__big d-flex flex-wrap flex-md-nowrap gap-4 align-items-center">
+<div class="company__icon" enctype="multipart/form-data">
+    <img src="{{job.company.cmp_image.url}}" alt="Company Image">
+</div>
+<div class="d-flex justify-content-between flex-wrap w-100 gap-3 gap-lg-2">
+<div class="job__meta">
+<div class="d-flex align-items-center justify-content-between gap-3">
+<a href="{% url "job-details" job.pk %}" class="job__title h6 fw-semibold">{{job.title}}, {{job.company.cmp_name}}</a>
+<span class="badge d-none d-sm-block">Featured</span>
+</div>
+<div class="d-flex gap-3 flex-wrap gap-lg-4 fw-medium">
+<div class="d-flex gap-2 align-items-center">
+    <i class="fa-light fa-location-dot"></i>{{job.company.state}}, {{job.company.country}}
+</div>
+<div class="d-flex gap-2 align-items-center">
+    <i class="fa-light rt-briefcase"></i> {{job.work_type}}
+</div>
+<div class="d-flex gap-2 align-items-center">
+    <i class="fa-light fa-clock"></i> {{job.date_time_posted|naturaltime}}
+</div>
+</div>
+</div>
+<div class="d-flex gap-3 gap-lg-5 flex-wrap align-items-center">
+<div class="job__tags d-flex flex-wrap gap-3">
+<a href="#">{{job.company.primary_industry}}</a>
+<a href="#">{{job.job_location}}</a> 
+</div>
+<div class="d-flex gap-3 flex-wrap">
+<div class="job__sallery d-flex gap-2 align-items-center">
+    <i class="fa-sharp rt-price-tag"></i> ₹ {{job.pay|intcomma}} <span>{{job.pay_mode}}</span>
+</div>
+<a href="{% url "job-details" job.pk %}" class="apply__btn">Apply Now</a>
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+<!-- single job item end -->  
+</div>
+</div>
+</section>
+<!-- featured job area end -->
+<!-- work process area -->
+<section class="rts__section section__padding">
+<div class="container">
+<div class="row align-items-center justify-content-center g-30">
+<div class="col-lg-5 offset-xl-1 col-xl-5">
+    <div class="rts__workprocess__image">
+        <img src="{% static "assets/img/home-3/about/about-image.webp" %}" alt="">
+        <div class="rts__applicants  wow animated fadeInLeft">
+            <span class="font-20 mb-3 d-block fw-medium">Applicants</span>
+            <div class="applicant__list">
+                
+                <div class="single__list">
+                    <img src="{% static "assets/img/author/1.svg" %}" alt="">
+                </div>
+                <div class="single__list">
+                    <img src="{% static "assets/img/author/2.svg" %}" alt="">
+                </div>
+                <div class="single__list">
+                    <img src="{% static "assets/img/author/3.svg" %}" alt="">
+                </div>
+                <div class="single__list">
+                    <img src="{% static "assets/img/author/4.svg" %}" alt="">
+                    <div class="icon-plus"><i class="fa-sharp fa-solid fa-plus"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-7 col-xl-6">
+    <div class="rts__workprocess__content mx-0 mx-lg-5  wow animated fadeInUp">
+        <div class="rts__section__content text-start">
+            <h3 class="rts__section__title mb-3">How Jobpath Works</h3>
+            <p class="rts__section__desc">From entry-level positions to executive roles browse through.   </p>
+        </div>
+        <div class="single__feature__list">
+            
+            <div class="single__item d-flex align-items-center flex-wrap flex-sm-nowrap gap-4">
+                <div class="">
+                    <div class="icon">
+                        <img src="{% static "assets/img/icon/create.svg" %}" alt="">
+                    </div>
+                </div>
+                <div class="content">
+                    <span class="h6 d-block">Create a Free Account</span>
+                    <p>Consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.</p>
+                </div>
+            </div>
+            <div class="single__item d-flex align-items-center flex-wrap flex-sm-nowrap gap-4">
+                <div class="">
+                    <div class="icon">
+                        <img src="{% static "assets/img/icon/khata.svg" %}" alt="">
+                    </div>
+                </div>
+                <div class="content">
+                    <span class="h6 d-block">Make Your Resume Amazing</span>
+                    <p>Consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.</p>
+                </div>
+            </div>
+            <div class="single__item d-flex align-items-center flex-wrap flex-sm-nowrap gap-4">
+                <div class="">
+                    <div class="icon">
+                        <img src="{% static "assets/img/icon/apply.svg" %}" alt="">
+                    </div>
+                </div>
+                <div class="content">
+                    <span class="h6 d-block">Apply  job</span>
+                    <p>Consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- work process area end -->
+
+<!-- top employer -->
+<section class="rts__section">
+    <div class="container">
+        <div class="row justify-content-center mb-50">
+            <div class="col-lg-6">
+                <div class="rts__section__content text-center  wow animated fadeInUp">
+                    <h3 class="rts__section__title mb-3">Top Recuriters</h3>
+                    <p class="rts__section__desc">Looking for your next career opportunity. Look no further</p>
+                </div>
+            </div>
+        </div>
+        <div class="row g-30">
+        {% for company in companies %}
+            <div class="col-lg-6">
+                <div class="rts__single__employer style__six d-flex justify-content-start justify-content-md-between flex-wrap gap-3">
+                    <div class="d-flex gap-4 align-items-center">
+                        <div>
+                            <img src="{{company.cmp_image.url}}" alt="Company Image" width="80" height="80">
+                        </div>
+                        <div class="content">
+                            <a href="{% url "company-details" company.pk %}" class="font-20 fw-semibold text-dark">{{company.cmp_name}}</a>
+                            <span class="d-block"> {{company.primary_industry}}</span>
+                            <div class="d-flex gap-2 align-items-center">
+                                <i class="fa-light fa-location-dot text-dark"></i> {{company.state}}, {{company.country}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-4 align-items-center flex-wrap">
+                        <a href="{% url "company-details" company.pk %}" class="apply__btn is__home">Open Job ({{company.job_set.count}})</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- top employer end -->
+
+<!-- apply area -->
+ <div class="rts__section section__padding">
+    <div class="container">
+        <div class="apply__area__bg overflow-hidden">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="apply__area__content">
+                        <h5 class="fw-bold l--3  wow animated fadeInUp">
+                            For Hiring Managers Looking for a new job can be both exciting and daunting.
+                        </h5>
+                        <a href="#" class="rts__btn common__btn he-3 fill__btn mt-50 z-2">Apply For a Job <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="position-relative col-lg-5 d-flex align-items-center justify-content-center justify-content-md-end">
+                    <div class="apply__area__img d-none d-md-block">
+                        <img src="{% static "assets/img/hom-4/cta.svg" %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--apply area end-->
+<!-- top candidate -->
+<!--section class="rts__section top__candidate__bg pt-100 pb-100">
+    <div class="rts__banner__shape">
+        <div class="shape__one"></div>
+        <div class="shape__two"></div>
+    </div>
+    <div class="container position-relative z-3">
+        <div class="row justify-content-between gap-4 mb-40">
+            <div class="col-xl-6 col-lg-10">
+                <div class="rts__section__content text-start text-white wow animated fadeInUp">
+                    <h3 class="rts__section__title section__mb">Top Candidates</h3>
+                    <p class="rts__section__desc">Looking for your next career opportunity. Look no further</p>
+                </div>
+            </div>
+            <div class="rts__links d-flex max-content align-items-end">
+                <a href="candidate-2.html" class="d-flex gap-3 align-items-center text-white">All Candidates <i class="fa-light fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="row mx-1 mx-sm-0 flex-column p-sm-0 gy-30">
+            
+            <! single candidate -->
+            <!--div class="top__candidate__single align-items-center bg-white rounded-2 d-flex justify-content-between py-3 px-4 flex-wrap flex-lg-nowrap gap-3">
+                <div class="d-flex gap-3 align-items-center flex-wrap flex-lg-nowrap">
+                    <div class="author d-flex align-items-center gap-3">
+                        <img class="rounded-2" height="60" width="60" src="assets/img/home-5/author/1.jpg" alt="">
+                        <div>
+                            <a href="candidate-details-1.html" class="h6 d-block mb-0 fw-semibold">John Doe</a>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                    <div class="meta">
+                        <div class="d-flex gap-3 gap-lg-2 gap-xl-3 flex-wrap">
+                            <div class="d-flex gap-2 align-items-center">
+                                <i class="fa-light fa-location-dot"></i> Newyork, USA
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <i class="fa-light fa-briefcase"></i> Full Time
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex gap-3 align-items-center flex-wrap flex-lg-nowrap">
+                    <div class="job__tags d-flex flex-wrap gap-2">
+                        <a href="#">Mobile App Design</a>
+                        <a href="#">user interface</a>
+                        <a href="#">Creative</a>
+                    </div>
+                    <a href="candidate-details-1.html" class="apply__btn is__home">View Profile</a>
+                </div>
+            </div>
+            < single candidate end >
+        </div>
+    </div>
+ </section-->
+<!-- top candidate end -->
+
+<!-- blog section -->
+ <div class="rts__section section__padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-10">
+<div class="rts__section__content text-center wow animated fadeIn mb-60">
+<h3 class="rts__section__title section__mb">Read Our Latest News</h3>
+<p class="rts__section__desc">Looking for your next career opportunity. Look no further</p>
+</div>
+</div>
+        </div>
+        <div class="row justify-content-center justify-content-lg-start g-30">
+            <div class="col-lg-6 col-xl-4 col-md-10">
+                <div class="rts__single__blog">
+                    <a href="blog-details.html" class="blog__img">
+                        <img src="{% static "assets/img/home-1/blog/1.webp" %}" class="mb-2" alt="blog">
+                    </a>
+                    <div class="blog__meta">
+                        <div class="blog__meta__info d-flex gap-3 my-3">
+                            <span class="d-flex gap-1 align-items-center"> <img class="svg" src="{% static "assets/img/icon/calender.svg" %}" alt=""> 20 March, 2022</span>
+                            <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="{% static "assets/img/icon/user.svg" %}" alt=""> Jon Adom</a>
+                        </div>
+                        <a href="blog-details.html" class="h6 fw-semibold">
+                            7 Ways Job Post Has Improved Business Today
+                        </a>
+                        <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-4 col-md-10">
+                <div class="rts__single__blog">
+                    <a href="blog-details.html" class="blog__img">
+                        <img src="{% static "assets/img/home-1/blog/2.webp" %}" class="mb-2" alt="blog">
+                    </a>
+                    <div class="blog__meta">
+                        <div class="blog__meta__info d-flex gap-3 my-3">
+                            <span class="d-flex gap-1 align-items-center"> <img class="svg" src="{% static "assets/img/icon/calender.svg" %}" alt=""> 20 March, 2022</span>
+                            <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="{% static "assets/img/icon/user.svg" %}" alt=""> Jon Adom</a>
+                        </div>
+                        <a href="blog-details.html" class="h6 fw-semibold">
+                            Start an online Job and work from home
+                        </a>
+                        <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-4 col-md-10">
+                <div class="rts__single__blog">
+                    <a href="blog-details.html" class="blog__img">
+                        <img src="{% static "assets/img/home-1/blog/3.webp" %}" class="mb-2" alt="blog">
+                    </a>
+                    <div class="blog__meta">
+                        <div class="blog__meta__info d-flex gap-3 my-3">
+                            <span class="d-flex gap-1 align-items-center"> <img class="svg" src="{% static "assets/img/icon/calender.svg" %}" alt=""> 20 March, 2022</span>
+                            <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="{% static "assets/img/icon/user.svg" %}" alt=""> Jon Adom</a>
+                        </div>
+                        <a href="blog-details.html" class="h6 fw-semibold">
+                            Insider Strategies for Success on Job Websites
+                        </a>
+                        <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<!-- blog section end -->
+
+{% endblock home %}

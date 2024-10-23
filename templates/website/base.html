@@ -1,0 +1,293 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="Your Ultimate Job HTML Template">
+    <meta name="keywords" content="Hosting, Domain, Transfer, Buy Domain, WHMCS">
+    <link rel="canonical" href="https://html.themewant.com/hostie">
+    <meta name="robots" content="index, follow">
+    <!-- for open graph social media -->
+    <meta property="og:title" content="Your Ultimate Job HTML Template">
+    <meta property="og:description" content="Your Ultimate Job HTML Template">
+    <meta property="og:image" content="https://www.example.com/image.jpg">
+    <meta property="og:url" content="https://html.themewant.com/hostie/">
+    <!-- for twitter sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Ultimate Job HTML Template">
+    <meta name="twitter:description" content="Your Ultimate Job HTML Template">
+    <meta name="twitter:image" content="https://html.themewant.com/hostie/landing/assets/images/banner/slider-img-01.webp">
+
+    <!-- fabicon -->
+    <link rel="icon" href="{% static "assets/img/favicon.ico" %}" type="image/x-icon">
+    <link rel="shortcut-icon" href="{% static "assets/img/favicon-16x16.png" %}" type="image/x-icon">
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "assets/img/favicon.ico" %}" type="image/x-icon">
+    <title>Jobpath | Job Search &amp; Career Community</title>
+    <!-- rt icons -->
+    <link rel="stylesheet" href="{% static "assets/fonts/icon/css/rt-icons.css" %}">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="{% static "assets/fonts/fontawesome/fontawesome.min.css" %}">
+    <!-- all plugin css -->
+    <link rel="stylesheet" href="{% static "assets/css/plugins.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+
+</head>
+<body>
+    
+<!-- header area -->
+<header class="rts__section rts__header absolute__header">
+    <div class="container-none">
+        <div class="rts__menu__background">
+            <div class="row">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="rts__logo">
+                        <a href="/">
+                            <img class="logo__image" src="{% static "assets/img/logo/header__one.svg" %}" width="160" height="40" alt="logo">
+                        </a>
+                    </div>
+                    <div class="rts__menu d-flex gap-5 gap-lg-4 gap-xl-5 align-items-center">
+                        <div class="navigation d-none d-lg-block">
+    <nav class="navigation__menu" id="offcanvas__menu">
+        <ul class="list-unstyled">
+            <li class="navigation__menu--item">
+                <a href="{% url 'home' %}" class="navigation__menu--item__link">Home</a>
+            </li>
+
+            <li class="navigation__menu--item">
+                <a href="{% url "available-jobs" %}" class="navigation__menu--item__link">Browse Jobs</a>
+            </li>
+
+            <li class="navigation__menu--item">
+                <a href="{% url "recuriters" %}" class="navigation__menu--item__link">Recruiters</a>
+            </li>
+
+            <li class="navigation__menu--item has-child has-arrow">
+                <a href="#" class="navigation__menu--item__link">Pages</a>
+                <ul class="submenu sub__style" role="menu"> 
+                    <li role="menuitem"><a href="{% url "about-us" %}">About</a></li>
+                    <li role="menuitem"><a href="{% url "contact" %}">Contact</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+                        <div class="header__right__btn d-flex gap-3">
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs">Dashboard</a>
+                            <a href="{% url "logout" %}" onclick="myFunction()" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs" aria-label="Login Button"> <i class="rt-login"></i>Logout</a>
+                            {% else %}
+                            <a href="{% url "login" %}" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs" aria-label="Login Button"> <i class="rt-login"></i>Sign In</a>
+                            <a href="{% url "register-candidate" %}" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs" aria-label="SignUp Button"> <i class="fa-light fa-user"></i>Sign Up</a>
+                            {% if request.user.is_authenticated %}
+                            <!--a href="" class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs">Dashboard</a-->
+                            {% else %}
+                            <a href="{% url 'login' %}" class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs">Add Job</a>
+                            <button class="d-md-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas"><i class="fa-sharp fa-regular fa-bars"></i></button>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header area end -->
+
+{% block home %} {% endblock home %}
+
+{% block recuriters %} {% endblock recuriters %}
+
+{% block candidates %} {% endblock candidates %}
+
+{% block about %} {% endblock about %}
+
+{% block contact %} {% endblock contact %}
+
+{% block content %} {% endblock content %}
+
+
+<!-- cta area  -->
+<div class="rts__section">
+<div class="container">
+<div class="row">
+<div class="rts__cta__content text-center rounded-2 cta__h5__bg">
+    <div class="cta__shape position-absolute translate-middle">
+        <img src="{% static "assets/img/home-5/cta/shape.svg" %}" alt="">
+    </div>
+    <div class="cta__content position-relative z-1">
+        <h3 class="text-white mb-5  wow animated fadeInUp">Join Us Today And Take The First Step Towards Your Dream Job</h3>
+        <form action="#" class="d-flex align-items-center justify-content-between mt-4 newsletter  wow animated fadeInUp">
+            <input class="rounded-1 border" type="email" name="cemail" id="cemail" placeholder="Enter your email" required="">
+            <span class="position-absolute text-primary left-20 ">
+                <i class="fa-sharp fa-light fa-envelope"></i>
+            </span>
+            <button type="submit" class="rts__btn fill__btn">Subscribe</button>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- cta area  end -->
+
+
+<footer class="rts__section  footer__home__five pt-120">
+<div class="container">
+<div class="row">
+<div class="footer__wrapper d-flex flex-wrap flex-lg-nowrap gap-4 
+justify-content-start justify-content-sm-between  pb-60">
+<!-- footer menu -->
+<div class="rts__footer__widget max-content">
+<div class="h6 fw-semibold mb-3 h6 lh-1">Pages</div>
+<ul class="list-unstyled">
+    <li><a href="/" aria-label="footer__menu__link">Home</a></li>
+    <li><a href="{% url "about-us" %}" aria-label="footer__menu__link">About Us</a></li>
+    <li><a href="{% url "recuriters" %}" aria-label="footer__menu__link">Recruiters</a></li>
+    <li><a href="{% url "candidates" %}" aria-label="footer__menu__link">Candidates</a></li>
+    <li><a href="blog-4.html" aria-label="footer__menu__link">Blog</a></li>
+</ul>
+</div>
+<!-- footer menu end -->
+<!-- footer menu -->
+<div class="rts__footer__widget max-content">
+<div class="h6 fw-semibold mb-3 h6 lh-1">Resource</div>
+<ul class="list-unstyled">
+    <li><a href="#" aria-label="footer__menu__link">Review</a></li>
+    <li><a href="{% url "contact" %}" aria-label="footer__menu__link">Contact</a></li>
+</ul>
+</div>
+<!-- footer menu end -->
+<!-- footer menu -->
+<div class="rts__footer__widget max-content">
+<div class="h6 fw-semibold mb-3 h6 lh-1">Links</div>
+<ul class="list-unstyled">
+    <li><a href="{% url "available-jobs" %}" aria-label="footer__menu__link">Browse Jobs</a></li>
+    <li><a href="{% url "candidates" %}" aria-label="footer__menu__link">Browse Candidates</a></li>
+    <li><a href="#" aria-label="footer__menu__link">Job Alerts</a></li>
+</ul>
+</div>
+<!-- footer menu end -->
+
+<!-- newsletter form -->
+<div class="rts__footer__widget max-360">
+<div class="h6 fw-semibold mb-3 h6 lh-1">Download The App</div>
+<p>Looking for your next career opportunity. Look no further</p>
+<div class="d-flex flex-wrap gap-3 align-items-center mt-4 app__icon">
+<a href="#" aria-label="footer__menu__link">
+    <img src="{% static "assets/img/icon/appstore.svg" %}" alt="">
+</a>
+<a href="#" aria-label="footer__menu__link">
+    <img src="{% static "assets/img/icon/playstore.svg" %}" alt="">
+</a>
+</div>
+</div>
+<!-- newsletter form end -->
+
+</div>
+</div>
+</div>
+<div class="footer__bottom footer__five__copy py-4 text-white">
+<div class="container">
+<div class="row g-4 align-items-center">
+<div class="col-lg-5 col-md-4">
+<a href="/" class="footer__logo">
+    <img src="{% static "assets/img/logo/logo_three_footer.svg" %}" alt="">
+</a>
+</div>
+<div class="col-lg-7 col-md-8">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap gap-4 align-items-center">
+    <div class="rts__social d-flex gap-3 social__three">
+<a href="https://facebook.com"  aria-label="facebook">
+<i class="fa-brands fa-facebook"></i>
+</a>
+<a href="https://instagram.com"  aria-label="instagram">
+<i class="fa-brands fa-instagram"></i>
+</a>
+<a href="https://linkedin.com"  aria-label="linkedin">
+<i class="fa-brands fa-linkedin"></i>
+</a>
+<a href="https://pinterest.com"  aria-label="pinterest">
+<i class="fa-brands fa-pinterest"></i>
+</a>
+<a href="https://youtube.com"  aria-label="youtube">
+<i class="fa-brands fa-youtube"></i>
+</a>
+</div>
+    <p>Copyright &copy; 2024 All Rights Reserved by jobpath</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+<div class="offcanvas-header p-0 mb-5 mt-4">
+<a href="index.html" class="offcanvas-title" id="offcanvasLabel">
+<img src="{% static "assets/img/logo/header__one.svg" %}" alt="logo">
+</a> 
+<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
+<!-- login offcanvas -->
+<div class="mb-4 d-block d-sm-none">
+<div class="header__right__btn d-flex justify-content-center gap-3">
+<a href="#" class="small__btn no__fill__btn border-6 font-xs" aria-label="Login Button" data-bs-toggle="modal" data-bs-target="#loginModal"> <i class="rt-login"></i>Sign In</a>
+<a href="#" class="small__btn d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button">Add Job</a>
+</div>
+</div>
+<div class="offcanvas-body p-0">
+<div class="rts__offcanvas__menu overflow-hidden">
+<div class="offcanvas__menu"></div>
+</div>
+<p class="max-auto font-20 fw-medium text-center text-decoration-underline mt-4">Our Social Links</p>
+<div class="rts__social d-flex justify-content-center gap-3 mt-3">
+<a href="https://facebook.com"  aria-label="facebook">
+<i class="fa-brands fa-facebook"></i>
+</a>
+<a href="https://instagram.com"  aria-label="instagram">
+<i class="fa-brands fa-instagram"></i>
+</a>
+<a href="https://linkedin.com"  aria-label="linkedin">
+<i class="fa-brands fa-linkedin"></i>
+</a>
+<a href="https://pinterest.com"  aria-label="pinterest">
+<i class="fa-brands fa-pinterest"></i>
+</a>
+<a href="https://youtube.com"  aria-label="youtube">
+<i class="fa-brands fa-youtube"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- THEME PRELOADER START -->
+<div class="loader-wrapper">
+<div class="loader">
+</div>
+<div class="loader-section section-left"></div>
+<div class="loader-section section-right"></div>
+</div>
+<!-- THEME PRELOADER END -->
+<button type="button" class="rts__back__top" id="rts-back-to-top">
+<i class="fas fa-arrow-up"></i>
+</button>
+<!-- all plugin js -->
+<script>
+    function myFunction() {
+      alert("Hello! Are you ready to logout?");
+    }
+</script>
+<script src="{% static "assets/js/plugins.min.js" %}"></script>
+<script src="{% static "assets/js/main.js" %}"></script>
+</body>
+</html>

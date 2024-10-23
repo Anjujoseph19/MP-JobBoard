@@ -1,0 +1,28 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    <div class="my__details" id="info">
+        <form method="POST" class="d-flex flex-column gap-4">
+        {% csrf_token %}
+            <div class="info__field">
+                <h5>Add Responsibility for <i>{{job.title}}</i> role</h5>
+                <div class="row row-cols-sm-1">
+                    <div class="rt-input-group">
+                        <label> Title </label>
+                        {% render_field form.name %} 
+                    </div>
+                </div>  
+                
+                <div class="btn-group">
+                    <button class="btn btn-success">Add Instance</button>
+                    <a href="{% url 'job-details' job.pk %}" class="btn btn-warning">Back to Job</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

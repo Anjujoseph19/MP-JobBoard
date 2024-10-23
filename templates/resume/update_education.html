@@ -1,0 +1,57 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    <div class="my__details" id="info">
+        <form method="POST" class="d-flex flex-column gap-4">
+        {% csrf_token %}
+            <div class="info__field">
+                <h5>Update Education details to your Resume</h5>
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> School Name</label>
+                        {% render_field form.school_name %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> Degree </label>
+                        {% render_field form.degree_type %} 
+                    </div>
+                </div> 
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> Course </label>
+                        {% render_field form.course %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> Still Schooling Here? </label>
+                        {% render_field form.still_schooling_here %} 
+                    </div>
+                </div>
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> Start Year </label>
+                        {% render_field form.start_date %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> End Year </label>
+                        {% render_field form.end_date %} 
+                    </div>
+                </div> 
+                <div class="row row-cols-sm-1">
+                    <div class="rt-input-group">
+                        <label> Short Description </label>
+                        {% render_field form.description %} 
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-success">Update Instance</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

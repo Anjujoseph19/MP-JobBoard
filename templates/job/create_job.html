@@ -1,0 +1,88 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    
+    <div class="my__details" id="info">
+        <h5>Add Job Information</h5>
+        <!--profile image upload end-->
+        <form method="POST" class="d-flex flex-column gap-4">
+        {% csrf_token %}
+            <br>
+            <div class="info__field">
+                <!--Info section-->
+                <div class="row row-cols-sm-1 row-cols-1 g-2">
+                    <div class="rt-input-group">
+                        <label>Job Title</label>
+                        {% render_field form.title placeholder=form.title.label %}
+                    </div>
+                </div>
+                <div class="row row-cols-sm-3 row-cols-1 g-2">
+                    <div class="rt-input-group">
+                        <label>Pay <small class="text-muted">IND</small></label>
+                        {% render_field form.pay placeholder=form.pay.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>How You Want To Pay?</label>
+                        {% render_field form.pay_mode placeholder=form.pay_mode.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Hours per Week</label>
+                        {% render_field form.hours_per_week placeholder=form.hours_per_week.label %}
+                    </div>
+                </div>
+                <div class="row row-cols-sm-3 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Vacancy</label>
+                        {% render_field form.job_vacancy placeholder=form.job_vacancy.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Qualification</label>
+                        {% render_field form.job_qualification %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Experience</label>
+                        {% render_field form.job_experience placeholder=form.job_experience.label %}
+                    </div>
+                </div>
+                <div class="row row-cols-sm-3 row-cols-1 g-2">
+                    <div class="rt-input-group">
+                        <label>City</label>
+                        {% render_field form.city %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>State</label>
+                        {% render_field form.state %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Country</label>
+                        {% render_field form.country %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-2 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Employment Type</label>
+                        {% render_field form.work_type placeholder=form.work_type.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Location Type</label>
+                        {% render_field form.job_location placeholder=form.job_location.label %}
+                    </div>
+                </div>
+                
+                <div class="row row-cols-md-1 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Job Description</label>
+                        {% render_field form.job_description placeholder=form.job_description.label %}
+                    </div>
+                </div>
+                <button type="submit" class="rts__btn fill__btn">Post Job</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,375 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+    <!-- breadcrumb area -->
+    <div class="rts__section breadcrumb__background">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 position-relative d-flex justify-content-between align-items-center">
+                <div class="breadcrumb__area max-content breadcrumb__padding">
+                    <div class="rts__job__card__big bg-transparent p-0 position-relative z-1 flex-wrap justify-content-between d-flex gap-4 align-items-center">
+                        <div class="d-flex gap-4 align-items-center flex-md-row flex-column mx-auto mx-md-0">
+                            <div enctype="multipart/form-data">
+                                <img src="{{company.cmp_image.url}}" alt="Company Image" width="200" height="100">
+                            </div>
+                            <div class="job__meta w-100 d-flex text-center text-md-start flex-column gap-2">
+                                <div class="">
+                                    <h3 class="job__title h3 mb-0">{{job.title}}</h3>
+                                </div>
+                                <div class="d-flex gap-3 justify-content-center justify-content-md-start flex-wrap mb-3 mt-2">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa-light fa-location-dot"></i>{{job.city}}, {{job.state}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa-light rt-briefcase"></i> {{job.work_type}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa-light fa-clock"></i> {{job.date_time_posted|naturaltime}}
+                                    </div>
+                                    <div class="d-flex gap-2 fw-medium align-items-center">
+                                        <i class="fa-light rt-price-tag"></i> {{job.pay|intcomma}}/{{job.pay_mode}}
+                                    </div>
+                                </div>
+                                <div class="job__tags d-flex justify-content-center justify-content-md-start flex-wrap gap-3">
+                                    <a >Available</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breadcrumb__apply min-fit-content mx-auto mx-sm-0">
+                        {% if request.user.is_candidate %}
+                        <a href="{% url 'apply-to-job' job.pk %}" class="rts__btn apply__btn be-1 bg-primary">Apply For Job</a>
+                        <a href="{% url 'save-job' job.pk %}"><i class="fa-solid fa-bookmark"></i></a>
+                        {% else %}
+                        <a href="{% url 'update-job' job.pk %}" class="rts__btn apply__btn be-1 bg-primary">Update Job Information</a>
+                        {% endif %}
+                    </div>             
+                </div>
+                <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
+                    <div class="shape__one common">
+                        <img src="{% static "assets/img/breadcrumb/shape-1.svg" %}" alt="">
+                    </div>
+                    <div class="shape__two common">
+                        <img src="{% static "assets/img/breadcrumb/shape-2.svg" %}" alt="">
+                    </div>
+                    <div class="shape__three common">
+                        <img src="{% static "assets/img/breadcrumb/shape-3.svg" %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- breadcrumb area end -->
+<!-- job list one -->
+    <div class="rts__section section__padding">
+        <div class="container">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible fade show {{message.tags}}" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if job.status == 'Pending' %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Your job is still in the draft and pending. Make sure to add Job Experience 
+                    and Responsibilities, then update status 'Active'.</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            <div class="row g-30">
+               <div class="col-lg-7 col-xl-8">
+                <div class="job__overview no-border-bottom mb-40">
+                    <h6 class="fw-semibold mb-30">Job Overview</h6>
+                    <div class="job__overview__content">
+                        <ul class="d-grid grid-style">
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="rt-calender"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Date Posted</span>
+                                        <span class="text">{{job.date_posted|date}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="rt-calender"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Due Date</span>
+                                        <span class="text">{{job.expiry_date|date}}</span>
+                                    </div>
+                                </div>
+                            </li-->
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="fa-light fa-user"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Vacancy</span>
+                                        <span class="text">{{job.job_vacancy}}</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="rt-experience"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Experience</span>
+                                        <span class="text">{{job.job_experience}} Years</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="rt-price-tag"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Offered Salary</span>
+                                        <span class="text">{{job.pay|intcomma}} IND/ {{job.pay_mode}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="rt-loading"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Working Hours</span>
+                                        <span class="text">{{job.hours_per_week}}H/ Weekly</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="rt-qualification"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Qualification</span>
+                                        <span class="text">{{job.job_qualification}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="fa-sharp fa-thin fa-location-dot"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text">Job Location</span>
+                                        <span class="text">{{job.city}}, {{job.state}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
+                                <div class="d-flex gap-3">
+                                    <span class="icon">
+                                        <i class="fa-light fa-briefcase"></i>
+                                    </span>
+                                    <div>
+                                        <span class="left-text"> Industry </span>
+                                        <span class="text">{{job.company.primary_industry}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rts__job__details">
+                    <div id="description" class="mb-30">
+                        <h6 class="fw-semibold mb-20">Job Description</h6>
+                        <p>{{job.job_description}}</p>
+                    </div>
+                    <div id="responsibility" class="mb-30">
+                        <h6 class="fw-semibold mb-20">Key Responsibilities</h6>
+                        {% if request.user.is_recruiter %}
+                        <a href="{% url "add-jobres" job.pk %}" class="btn btn-danger">
+                            <i class="fa-regular fa-circle-plus"></i><span> Add Responsibility </span></a>
+                        {% endif %}
+                            <br>
+                            <ul class="timeline">
+                                {% for jr in job.jobres_set.all %}
+                                <li>{{jr.name}}
+                                    {% if request.user.is_recruiter %}
+                                    <a href="{% url "delete-jobres" jr.pk %}" type="button" title="Delete Job Responsibility"><i class="fa fa-trash text-danger"></i></a>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                    </div>
+                    <div id="responsibility" class="mb-30">
+                        <h6 class="fw-semibold mb-20">Skills and Experience</h6>
+                        {% if request.user.is_recruiter %}
+                        <a href="{% url 'add-jobexp' job.pk %}" class="btn btn-danger">
+                            <i class="fa-regular fa-circle-plus"></i><span> Add Experience </span></a>
+                            {% endif %}
+                            <br>
+                            <ul class="timeline">
+                                {% for je in job.jobexp_set.all %}
+                                <li>{{je.name}}
+                                    {% if request.user.is_recruiter %}
+                                    <a href="{% url "delete-jobexp" je.pk %}" title="Delete Job Experience"><i class="fa fa-trash text-danger"></i></a>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                    </div>
+                    
+                    <!--div id="skill" class="mb-30">
+                        <h6 class="fw-semibold mb-20">Skills and Experience</h6>
+                        <div class="job__tags job__details__tags">
+                            <a href="#" class="job__tag">Javascript</a>
+                            <a href="#" class="job__tag">user interface</a>
+                            <a href="#" class="job__tag">Problem Solving</a>
+                        </div>
+                    </div-->    
+                </div>
+               </div>
+               <div class="col-lg-5 col-xl-4  d-flex flex-column gap-40">
+                    <div class="company__card">
+                        <div class="company__icon rounded-2 bg-gray" enctype="multipart/form-data">
+                            <img src="{{company.cmp_image.url}}" alt="Company Image" width="100" height="100">
+                        </div>
+                        <h5 class="company__name mt-20">{{company.cmp_name}}</h5>
+                        <a href="{% url "company-details" company.pk %}" style="color:green;" class="company__link d-block mt-20" aria-label="View Company" target="_blank">View Company Profile</a>
+                        
+                        <div class="job__overview__content">
+                            <ul>
+                                <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                                    <span class="left-text"> <i class="fa-light fa-user"></i> CEO:</span>
+                                    <span class="text">{{company.cmp_ceo}}</span>
+                                </li>
+                                <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                                    <span class="left-text"> <i class="rt-calender"></i> Founded:</span>
+                                    <span class="text">{{company.founded_in}}</span>
+                                </li>
+                                <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                                    <span class="left-text"> <i class="fa-light fa-location-dot"></i>Headquarters:</span>
+                                    <span class="text">{{company.city}}, {{company.country}}</span>
+                                </li>
+                                <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                                    <span class="left-text"> <i class="rt-phone"></i> Phone:</span>
+                                    <span class="text">{{company.phone_number}}</span>
+                                </li>
+                                <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                                    <span class="left-text"> <i class="fa fa-envelope"></i></i> Email Id:</span>
+                                    <span class="text">{{company.email_address}}</span>
+                                </li>
+                                <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                                    <span class="left-text"> <i class="rt-branch"></i> Social Media: </span>
+                                    <div class="rts__social d-flex gap-3">
+                                        <a href="{{company.facebook}}"  aria-label="facebook">
+                                            <i class="fa-brands fa-facebook"></i>
+                                        </a>
+                                        <a href="{{company.twitter}}"  aria-label="twitter">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                        <a href="{{company.linked_in}}"  aria-label="linkedin">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a href="{{company.website}}" class="theme-btn btn-style-three">
+                                        <button type="button" class="btn btn-outline-success"><i class="fa fa-home"></i> Vist Our Website</button>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+                </div>          
+            </div>
+            </div>
+        </div>
+     </div>
+    <!-- job list one end -->
+
+    <!-- top employer -->
+    <div class="rts__section pb-120 overflow-hidden">
+        <div class="container">
+            <div class="row justify-content-center position-relative">
+                <div class="col-xl-6 col-lg-10">
+    <div class="rts__section__content text-center mb-60">
+        <h3 class="rts__section__title section__mb">Other Jobs by {{job.company.cmp_name}}</h3>
+        <p class="rts__section__desc">Check out other Jobs by the same Company.</p>
+    </div>
+</div>
+
+            <div class="row g-30">
+                {% for get_job in jobs %}
+                {% if not get_job.pk == job.pk %}
+                <!-- single item -->
+                <div class="col-lg-12">
+                    <div class="rts__job__card__big style__gradient flex-wrap justify-content-between d-flex gap-4 align-items-center">
+                        <div class="d-flex flex-wrap flex-md-nowrap flex-lg-wrap flex-xl-nowrap gap-4 align-items-center">
+                            <div class="company__icon" enctype="multipart/form-data">
+                                <img src="{{company.cmp_image.url}}" alt="Company Image">
+                            </div>
+                            <div class="job__meta w-100 d-flex flex-column gap-2">
+                                <div class="d-flex justify-content-between align-items-center gap-3">
+                                    <a href="{% url 'job-details' get_job.pk %}" class="job__title h6 mb-0">{{get_job.title}}</a>
+                                </div>
+                                <div class="d-flex gap-3 gap-md-4 flex-wrap mb-2">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa-light fa-location-dot"></i> {{get_job.company.city}}, {{get_job.company.country}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa-light rt-briefcase"></i> {{get_job.work_type}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa-light fa-clock"></i> {{get_job.date_time_posted|naturaltime}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="rt-price-tag"></i>₹ {{get_job.pay|intcomma}} <span>{{get_job.pay_mode}}</span>
+                                    </div>
+                                </div>
+                                <div class="job__tags d-flex flex-wrap gap-3">
+                                    <a href="#">Creative</a>
+                                    <a href="#">user interface</a>
+                                    <a href="#">web ui</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <button class="apply__btn">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- single item end -->
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- job list one end -->
+
+            </div>
+        </div>
+    </div>
+    <!-- top employer end -->
+
+
+    
+
+{% endblock content %}

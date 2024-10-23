@@ -1,0 +1,47 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    <div class="my__details" id="info">
+        <form method="POST" class="d-flex flex-column gap-4">
+        {% csrf_token %}
+            <div class="info__field">
+                <h5>Add your Skill</h5>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Skill
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Skill</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row row-cols-sm-1">
+                            <div class="rt-input-group">
+                                <label>Skill</label>
+                                {% render_field form.skill_name %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-success">Add Instance</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+    </div>
+</form>
+</div>
+</div>
+{% endblock content %}

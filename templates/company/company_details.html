@@ -1,0 +1,189 @@
+{% extends "website/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<!-- breadcrumb area -->
+<div class="rts__section breadcrumb__background">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 position-relative d-flex justify-content-md-between justify-content-center align-items-center">
+                <div class="breadcrumb__area max-content breadcrumb__padding">
+                    <div class="rts__job__card__big bg-transparent p-0 position-relative z-1 flex-wrap justify-content-between d-flex gap-4 align-items-center">
+                        <div class="d-flex gap-4 align-items-center flex-md-row flex-column mx-auto mx-md-0">
+                            <div enctype="multipart/form-data">
+                                <img src="{{company.cmp_image.url}}" alt="Company Image">
+                            </div>
+                            <div class="job__meta w-100 d-flex text-center text-md-start flex-column gap-2">
+                                <div class="">
+                                    <h3 class="job__title fw-bold h3 mb-0">{{company.cmp_name}}</h3>
+                                </div>
+                                <div class="d-flex gap-3 justify-content-center justify-content-md-start flex-wrap mb-3 mt-2">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="rt-briefcase"></i>{{company.primary_industry}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa-light fa-location-dot"></i>{{company.city}}, {{company.country}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="rt-phone"></i>{{company.phone_number}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>{{company.email_address}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="breadcrumb__apply max-content">
+                        {% if request.user.is_recruiter and request.user.company.pk == company.pk %}
+                        <a href="{% url 'update-company' company.pk %}" class="rts__btn apply__btn be-1 fill__btn">Update Company Info</a>
+                        {% endif %}
+                    </div>             
+                </div>
+                <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
+                    <div class="shape__one common">
+                        <img src="{% static "assets/img/breadcrumb/shape-1.svg" %}" alt="">
+                    </div>
+                    <div class="shape__two common">
+                        <img src="{% static "assets/img/breadcrumb/shape-2.svg" %}" alt="">
+                    </div>
+                    <div class="shape__three common">
+                        <img src="{% static "assets/img/breadcrumb/shape-3.svg" %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb area end -->
+
+
+<!-- job list one -->
+<div class="rts__section section__padding">
+    <div class="container">{% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary alert-dismissible fade show {{message.tags}}" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="row g-30">
+            <div class="col-xl-8 col-lg-7">
+                <div class="employer__details">
+                    <h6 class="fw-semibold mb-20">About Company</h6>
+                    <p>
+                        {{company.about_company}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-5 col-xl-4  d-flex flex-column gap-40 ">
+                <div class="job__overview">
+                <h6 class="fw-semibold mb-20">Company Overview</h6>
+                <div class="job__overview__content">
+                    <ul>
+                        <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                            <span class="left-text"> <i class="fa-light fa-user"></i> CEO:</span>
+                            <span class="text">{{company.cmp_ceo}}</span>
+                        </li>
+                        <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                            <span class="left-text"> <i class="rt-calender"></i> Founded:</span>
+                            <span class="text">{{company.founded_in}}</span>
+                        </li>
+                        <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                            <span class="left-text"> <i class="fa-light fa-user"></i> Company Size:</span>
+                            <span class="text">{{company.cmp_size}}</span>
+                        </li>
+                        <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                            <span class="left-text"> <i class="rt-briefcase"></i> Industry:</span>
+                            <span class="text">{{company.primary_industry}}</span>
+                        </li>
+                        <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                            <span class="left-text"> <i class="fa-sharp fa-thin fa-location-dot"></i> Headquarters:</span>
+                            <span class="text">{{company.city}}, {{company.country}}</span>
+                        </li>
+                        <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                            <span class="left-text"> <i class="rt-branch"></i> Social Media: </span>
+                            <div class="rts__social d-flex gap-3">
+                                <a href="{{company.facebook}}"  aria-label="facebook">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                                <a href="{{company.twitter}}"  aria-label="twitter">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                                <a href="{{company.linked_in}}"  aria-label="linkedin">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="text-center">
+                                <a href="{{company.website}}" class="theme-btn btn-style-three">
+                                <button type="button" class="btn btn-outline-success"><i class="fa fa-home"></i> Go to Website</button>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+<!-- job list one end -->
+
+<!-- top employer -->
+<section class="rts__section">
+    <div class="container">
+        <div class="row justify-content-center mb-50">
+            <div class="col-lg-6">
+                <div class="rts__section__content text-center  wow animated fadeInUp">
+                    <h3 class="rts__section__title mb-3">{{company.job_set.all.count}} Opening Jobs at {{company.cmp_name}}</h3>
+                    <p class="rts__section__desc">Check out other Jobs by the same Company.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row g-30">
+            {% for job in company.job_set.all %}
+            <div class="col-lg-6">
+                <div class="rts__single__employer style__six d-flex justify-content-start justify-content-md-between flex-wrap gap-3">
+                    <div class="d-flex gap-4 align-items-center">
+                        <div class="icon" enctype="multipart/form-data">
+                            <img src="{{company.cmp_image.url}}" alt="Company Image">
+                        </div>
+                        <div class="content">
+                            <a href="{% url 'job-details' job.pk %}" class="font-20 fw-semibold text-dark">{{job.title}}</a>
+                            <span class="d-block">{{job.company.primary_industry}}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-4 align-items-center flex-wrap">
+                        <div class="d-flex gap-2 align-items-center">
+                            <i class="fa-light fa-location-dot text-dark"></i> {{job.company.city}}, {{job.company.country}}
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <i class="fa-light rt-briefcase text-dark"></i> {{job.work_type}}
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <i class="fa-light fa-clock text-dark"></i> {{job.date_time_posted|naturaltime}}
+                        </div>
+                        <div class="jd-flex gap-2 align-items-center">
+                            <i class="fa-sharp rt-price-tag text-dark"></i> ₹ {{job.pay|intcomma}} <span>{{job.pay_mode}}</span>
+                        </div>
+                        <a href="{% url "job-details" job.pk %}" class="apply__btn is__home">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- top employer end -->
+
+<div class="rts__section section__padding">
+
+</div>
+{% endblock content %}

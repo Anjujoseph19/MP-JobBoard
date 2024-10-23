@@ -1,0 +1,38 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    
+    <div class="my__details" id="info">
+        <h5>Update Profile</h5>
+        <!--profile image upload end-->
+        <form method="POST" class="d-flex flex-column gap-4">
+        {% csrf_token %}
+            <br>
+            <div class="info__field">
+                <!--Info section-->
+                <div class="row row-cols-sm-1">
+                    <div class="rt-input-group">
+                        <label>Active User</label>
+                        <input placeholder="{{request.user.first_name}} {{request.user.last_name}}"readonly>
+                    </div>
+                </div>
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label>First Name</label>
+                        {% render_field form.first_name placeholder=form.first_name.label %}  
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Last Name</label>
+                        {% render_field form.last_name placeholder=form.last_name.label %} 
+                    </div>
+                </div>
+                <button type="submit" class="rts__btn fill__btn">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

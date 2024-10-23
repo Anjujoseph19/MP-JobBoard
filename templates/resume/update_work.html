@@ -1,0 +1,70 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    <div class="my__details" id="info">
+        <form method="POST" class="d-flex flex-column gap-4">
+        {% csrf_token %}
+            <div class="info__field">
+                <h5>Update Work details to your Resume</h5>
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> Role </label>
+                        {% render_field form.role %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> Company Name </label>
+                        {% render_field form.company_name %} 
+                    </div>
+                </div> 
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> Employment Type </label>
+                        {% render_field form.employment_type %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> Location Type </label>
+                        {% render_field form.location_type %} 
+                    </div>
+                </div>
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> State </label>
+                        {% render_field form.state %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> Country </label>
+                        {% render_field form.country %} 
+                    </div>
+                </div>
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> Start Year </label>
+                        {% render_field form.start_year %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> End Year </label>
+                        {% render_field form.end_year %} 
+                    </div>
+                </div> 
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label> Currently working in this role? </label>
+                        {% render_field form.still_working_here %} 
+                    </div>
+                    <div class="rt-input-group">
+                        <label> Description </label>
+                        {% render_field form.description %} 
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-success">Update Instance</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

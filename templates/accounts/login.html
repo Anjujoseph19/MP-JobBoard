@@ -1,0 +1,36 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+{% block content %}
+
+<!--Login form section-->
+
+                <span class="h4 fw-normal"><strong class="fw-bold">Login To Jobpath</strong></span>
+                    <div class="modal-content">
+                        <div class="max-content similar__form form__padding">
+                            <form method="POST" class="d-flex flex-column gap-4">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="email" class="fw-medium text-dark mb-3">Username</label>
+                                    <div class="position-relative">
+                                        <input type="email" name="username" placeholder="test@gmail.com" required>
+                                        <i class="fa-light fa-user icon"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="fw-medium text-dark mb-3">Password</label>
+                                    <div class="position-relative">
+                                        <input type="password" name="password" placeholder="**********" required>
+                                        <i class="fa-light fa-lock icon"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group my-3">
+                                    <button class="rts__btn w-100 fill__btn">Login</button>
+                                </div>
+                            </form>
+                            <span class="d-block text-center fw-medium">Don`t have an account? <a href="{% url "register-candidate" %}" class="text-primary">Sign Up</a> </span>
+                        </div>
+                    </div>
+            </div>
+<!-- login form end -->
+
+{% endblock content %}

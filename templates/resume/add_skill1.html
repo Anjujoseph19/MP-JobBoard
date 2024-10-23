@@ -1,0 +1,23 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    <div class="my__details" id="info">
+        <form method="POST" class="d-flex flex-column gap-4">
+        {% csrf_token %}
+            <div class="info__field">
+                <h5>Add your Skills</h5>
+ 
+                
+                <div class="btn-group">
+                    <button class="btn btn-success">Add Instance</button>
+                    <a href="{% url "resume-details" resume.pk %}" class="btn btn-warning">Back to Resume</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

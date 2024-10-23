@@ -1,0 +1,122 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block recuriters %}
+<!-- breadcrumb area -->
+<div class="rts__section breadcrumb__background">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 position-relative d-flex justify-content-between align-items-center">
+                <div class="breadcrumb__area max-content breadcrumb__padding z-2">
+                    <h1 class="breadcrumb-title h3 mb-3">Recuriters</h1>
+                    <nav>
+                        <ul class="breadcrumb m-0 lh-1">
+                          <li class="breadcrumb-item"><a href="/">Home</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Recuriters</li>
+                        </ul>
+                    </nav>                  
+                </div>
+                <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
+                    <div class="shape__one common">
+                        <img src="{% static "assets/img/breadcrumb/shape-1.svg" %}" alt="">
+                    </div>
+                    <div class="shape__two common">
+                        <img src="{% static "assets/img/breadcrumb/shape-2.svg" %}" alt="">
+                    </div>
+                    <div class="shape__three common">
+                        <img src="{% static "assets/img/breadcrumb/shape-3.svg" %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- breadcrumb area end -->
+
+    <!-- advance search -->
+    <div class="rts__section">
+        <div class="container">
+            <div class="row">
+                <div class="advance__search__bg">
+                    <form action="#" class="advance__search__form">
+                        <div class="search__item">
+                            <div class="position-relative">
+                                <input type="text" id="search" placeholder="Enter Type Of job" required>
+                                <i class="fa-light fa-magnifying-glass"></i>
+                            </div>
+                        </div>
+                        <!-- job location -->
+                        <div class="search__item">
+                            <div class="position-relative d-flex">
+                                <i class="fa-light fa-location-dot"></i>
+                                <div class="nice-select" tabindex="0">
+                                    <span class="current">Search Location</span>
+                                    <ul class="list">
+                                        <li data-value="Nothing" data-display="Search Location" class="option selected focus">Search Location</li>
+                                        <li data-value="1" class="option">Dhaka</li>
+                                        <li data-value="2" class="option">Barisal</li>
+                                        <li data-value="3" class="option">Chittagong</li>
+                                        <li data-value="4" class="option">Rajshahi</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <button type="submit" class="rts__btn fill__btn be-1 job__search">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- advance search end -->
+
+    <!-- job list one -->
+     <div class="rts__section section__padding">
+        <div class="container">
+            <div class="row g-30">
+
+<!-- top employer -->
+<section class="rts__section">
+    <div class="container">
+        <div class="row g-30">
+            {% for company in companies %}
+            <div class="col-lg-6">
+                <div class="rts__single__employer style__six d-flex justify-content-start justify-content-md-between flex-wrap gap-3">
+                    <div class="d-flex gap-4 align-items-center">
+                        <div class="icon">
+                            <img src="{{company.cmp_image.url}}" alt="Company Image">
+                        </div>
+                        <div class="content">
+                            <a href="{% url "company-details" company.pk %}" class="font-20 fw-semibold text-dark">{{company.cmp_name}}</a>
+                            <span class="d-block">{{company.primary_industry}}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-4 align-items-center flex-wrap">
+                        <div class="d-flex gap-2 align-items-center">
+                            <i class="fa-light fa-location-dot text-dark"></i> {{company.state}}, {{company.country}}
+                        </div>
+                        <a href="{% url "company-details" company.pk %}" class="apply__btn is__home">Open Job ({{company.job_set.count}})</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- top employer end -->
+
+                    <!-- pagination -->
+                    <div class="rts__pagination rounded__pagination mx-auto pt-60 max-content">
+                        <ul class="d-flex gap-2">
+                            <li><a href="#" class="inactive"><i class="rt-chevron-left"></i></a></li>
+                            <li><a class="active" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#"><i class="rt-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- pagination end -->
+            </div>
+        </div>
+     </div>
+    <!-- job list one end -->
+
+{% endblock recuriters %}

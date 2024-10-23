@@ -1,0 +1,53 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}              
+                <div class="applied__job__info radius-16">
+                    <h5>Manage Jobs</h5>
+                    <div class="applied__job__list">
+                        <!--single job-->
+                        <table class="table table-striped">
+                            <thead>
+                              <tr class="table-dark">
+                                <th scope="col">Job Title</th>
+                                <th scope="col">Company</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for job in  jobs %}
+                              <tr>
+                                <td>
+                                    <span class="company-logo"><img src="{{job.job.company.cmp_image.url}}" alt="Company Image" width="50" height="60"></span>
+                                    <h6>{{job.job.title}}</h6>
+                                    <ul class="job-info">
+                                        <li>
+                                            <span><i class="fa-light rt-briefcase"></i> {{job.job.company.primary_industry}}</span>
+                                        </li>
+                                        <li>
+                                            <span><i class="fa-light fa-location-dot"></i> {{job.job.company.city}}, {{job.job.company.country}}</span>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span>{{job.job.company.cmp_name}}</span><br>
+                                </td>
+                                <td>
+                                    <!-- Call to action buttons -->
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="{% url 'job-details' job.job.pk %}" class="btn btn-primary btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="View Job Info"><i class="fa fa-eye"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{% url 'delete-saved-job' job.pk %}" class="btn btn-danger btn-sm rounded-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete Saved Job"><i class="fa fa-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        <!--single job ends-->
+                    </div>
+                </div>
+{% endblock content %}

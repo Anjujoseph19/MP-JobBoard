@@ -1,0 +1,110 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    
+    <div class="my__details" id="info">
+        <h5>Add Company Information</h5>
+        <form method="POST" class="d-flex flex-column gap-4" enctype="multipart/form-data">
+        {% csrf_token %}
+            <!--profile image upload-->
+            <div class="info__top">
+                <label>Upload Company Image</label><br>
+                <div class="select__image">
+                    {% render_field form.cmp_image %}
+                </div>
+            </div>
+            <!--profile image upload end-->
+            <div class="info__field">
+                <!--Info section-->
+                <div class="row row-cols-sm-2 row-cols-1 g-2">
+                    <div class="rt-input-group">
+                        <label>Company Name</label>
+                        {% render_field form.cmp_name placeholder=form.cmp_name.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>CEO</label>
+                        {% render_field form.cmp_ceo placeholder=form.cmp_ceo.label %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-2 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Phone Number</label>
+                        {% render_field form.phone_number placeholder=form.phone_number.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Email ID</label>
+                        {% render_field form.email_address placeholder=form.email_address.label %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-2 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Website</label>
+                        {% render_field form.website placeholder=form.website.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Linkedin</label>
+                        {% render_field form.linked_in placeholder=form.linked_in.label %}
+                    </div>
+                </div>
+                <div class="row row-cols-sm-2 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Facebook</label>
+                        {% render_field form.facebook placeholder=form.facebook.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Twitter</label>
+                        {% render_field form.twitter placeholder=form.twitter.label %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-3 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Company Industry</label>
+                        {% render_field form.primary_industry placeholder=form.primary_industry.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Founded Date</label>
+                        {% render_field form.founded_in placeholder=form.founded_in.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Company Size</label>
+                        {% render_field form.cmp_size placeholder=form.cmp_size.label %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-3 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>Country</label>
+                        {% render_field form.country placeholder=form.country.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>State</label>
+                        {% render_field form.state placeholder=form.state.label %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>City</label>
+                        {% render_field form.city placeholder=form.city.label %}
+                    </div>
+                </div>
+                
+
+                <div class="row row-cols-md-1 row-cols-1 g-3">
+                    <div class="rt-input-group">
+                        <label>About Company</label>
+                        {% render_field form.about_company placeholder=form.about_company.label %}
+                    </div>
+                </div>
+                <button class="rts__btn fill__btn">Save Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

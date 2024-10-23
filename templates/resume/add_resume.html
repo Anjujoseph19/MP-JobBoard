@@ -1,0 +1,107 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my__profile__tab radius-16 bg-white">
+    <div class="my__details" id="info">
+        <form method="POST" class="d-flex flex-column gap-4" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="info__field">
+                <h5>Add Resume Information</h5>
+                <!--profile image upload-->
+                <div class="info__top">
+                    <label>Upload Your Profile Image</label><br>
+                    <div class="select__image">
+                        {% render_field form.candidate_image %}
+                    </div>
+                </div>
+                <!--profile image upload end-->
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label>First Name</label>
+                        <input type="text" value="{{request.user.first_name}}" readonly required>
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Last Name</label>
+                        <input type="text" value="{{request.user.last_name}}" readonly required>
+                    </div>
+                </div> 
+
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label>State</label>
+                        {% render_field form.state %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Country</label>
+                        {% render_field form.country %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label>Experience (In Years)</label>
+                        {% render_field form.experience %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Age</label>
+                        {% render_field form.age %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label>Gender</label>
+                        {% render_field form.gender %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Language</label>
+                        {% render_field form.language %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label>Education Level</label>
+                        {% render_field form.education_level %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Phone Number</label>
+                        {% render_field form.phone_number %}
+                    </div>
+                </div>
+                <div class="row row-cols-sm-2">
+                    <div class="rt-input-group">
+                        <label>LinkedIn</label>
+                        {% render_field form.linked_in %}
+                    </div>
+                    <div class="rt-input-group">
+                        <label>Twitter</label>
+                        {% render_field form.twitter %}
+                    </div>
+                </div>
+                <div class="row row-cols-sm-1">
+                    <div class="rt-input-group">
+                        <label>Skills</label>
+                        {% render_field form.skill_name %}
+                    </div>
+                </div>
+
+                <div class="row row-cols-sm-1">
+                    <div class="rt-input-group">
+                        <label>About Candidate</label>
+                        {% render_field form.about_candidate %}
+                    </div>
+                </div>
+
+
+                <div class="btn-group">
+                    <button class="btn btn-success">Submit</button>
+                </div> 
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

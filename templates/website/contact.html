@@ -1,0 +1,154 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block contact %}
+  
+<!-- breadcrumb area -->
+    <div class="rts__section breadcrumb__background">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 position-relative d-flex justify-content-between align-items-center">
+                    <div class="breadcrumb__area max-content breadcrumb__padding z-2">
+                        <h1 class="breadcrumb-title h3 mb-3">Contact</h1>
+                        <nav>
+                            <ul class="breadcrumb m-0 lh-1">
+                              <li class="breadcrumb-item"><a href="{% url "home" %} ">Home</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                            </ul>
+                        </nav>                  
+                    </div>
+                    <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
+                        <div class="shape__one common">
+                            <img src="{% static "assets/img/breadcrumb/shape-1.svg" %}" alt="">
+                        </div>
+                        <div class="shape__two common">
+                            <img src="{% static "assets/img/breadcrumb/shape-2.svg" %}" alt="">
+                        </div>
+                        <div class="shape__three common">
+                            <img src="{% static "assets/img/breadcrumb/shape-3.svg" %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- breadcrumb area end -->
+
+<!-- contact map -->
+    <div class="gmap">
+        <div class="container-fluid">
+            <div class="full__map">
+                <iframe height="600" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=reacthemes+(reacthemes)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+            </div>
+            
+        </div>
+    </div>
+<!-- contact map end -->
+
+<!-- contact method -->
+    <div class="rts__section is__half__section ">
+        <div class="container">
+            <div class="row justify-content-center g-0 is__no__border rounded-3 shadow-rt-sm bg-white">
+                <div class="col-lg-4 col-md-6">
+                    <div class="rts__workprocess__box is__contact ">
+                        <div class="rts__icon">
+                            <img src="{% static "assets/img/icon/location.svg" %}" alt="">
+                        </div>
+                        <span class="process__title h6 d-block">Location Here</span>
+                        <p class="fw-medium">C 105, Magnifica CasaBella, Lodha, India</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="rts__workprocess__box is__contact ">
+                        <div class="rts__icon">
+                            <img src="{% static "assets/img/icon/mail.svg" %}" alt="">
+                        </div>
+                        <span class="process__title h6 d-block">Email Here</span>
+                        <a class="text-para fw-medium" href="mailto:2R0Z9@example.com">jobpath@gmail.com</a>
+                        <a class="text-para fw-medium" href="mailto:2R0Z9@example.com">achujoseph1995@gmail.com</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="rts__workprocess__box is__contact ">
+                        <div class="rts__icon">
+                            <img src="{% static "assets/img/icon/phone.svg" %}" alt="">
+                        </div>
+                        <span class="process__title h6 d-block">Call Here</span>
+                       <a class="fw-medium text-para d-block" href="tel:+44-20-7328-4499">+44-20-7328-4499</a>
+                       <a class="fw-medium text-para" href="tel:+44-20-7328-4499">+91-974-423-9027</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact method end -->
+
+    <!-- contact form -->
+    <div class="rts__section section__padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 pe-5">
+                    <div class="contact__image">
+                        <figure>
+                            <img src="{% static "assets/img/pages/contact.webp" %}" alt="">
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-lg-6 ">
+                    {% if messages %}
+                    <div class="messages position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <span class="h4 fw-normal"><strong class="fw-bold">Love to hear from you</strong>
+                        <br>
+                        Get in touch!
+                    </span>
+                    <div class="job__contact is__contact mt-30">
+                        <form method="POST" action="#" class="d-flex flex-column gap-4">
+                            {% csrf_token %}
+                            <div class="search__item">
+                                <label class="mb-4 font-20 fw-medium text-dark text-capitalize">Name</label>
+                                <div class="position-relative">
+                                    <input type="text" name="name" id="name" value="{{request.user.get_full_name}}" readonly>
+                                    <i class="fa-light fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="search__item">
+                                <label class="mb-4 font-20 fw-medium text-dark text-capitalize">Your Email</label>
+                                <div class="position-relative">
+                                    <!-- Pre-fill the email input with the logged-in user's email -->
+                                    <input type="email" name="email" id="email" type="email" value="{{ user_email }}" readonly>
+                                    <i class="rt-mailbox"></i>
+                                </div>
+                            </div>
+                            <div class="search__item">
+                                <label class="mb-4 font-20 fw-medium text-dark text-capitalize">Subject</label>
+                                <div class="position-relative">
+                                    <input name="subject" id="subject" type="text" placeholder="Enter Subject">
+                                    <i class="rt-mailbox"></i>
+                                </div>
+                            </div>
+                            <div class="search__item">
+                                <label class="mb-4 font-20 fw-medium text-dark text-capitalize" for="message">Your Comment</label>
+                                <textarea name="message" id="message" placeholder="Write your Message"></textarea>
+                                <i class="fa-thin fa-comment-lines"></i>
+                            </div>
+                            <button type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+     </div>
+<!-- contact form end -->
+
+{% endblock contact %}
